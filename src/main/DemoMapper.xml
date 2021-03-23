@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+    <sql id="sql001" lang="">
+
+    </sql>
+    <resultMap id="result001" type="result001">
+        <result></result>
+    </resultMap>
+
+
+</mapper>

@@ -48,17 +48,7 @@ public class UnknownTypeHandler extends BaseTypeHandler<Object> {
     this.typeHandlerRegistrySupplier = configuration::getTypeHandlerRegistry;
   }
 
-  /**
-   * The constructor that pass the type handler registry.
-   *
-   * @param typeHandlerRegistry a type handler registry
-   * @deprecated Since 3.5.4, please use the {@link #UnknownTypeHandler(Configuration)}.
-   */
-  @Deprecated
-  public UnknownTypeHandler(TypeHandlerRegistry typeHandlerRegistry) {
-    this.config = new Configuration();
-    this.typeHandlerRegistrySupplier = () -> typeHandlerRegistry;
-  }
+
 
   @Override
   public void setNonNullParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType)

@@ -47,18 +47,6 @@ public class SqlSessionManager implements SqlSessionFactory, SqlSession {
         new SqlSessionInterceptor());
   }
 
-  public static SqlSessionManager newInstance(Reader reader) {
-    return new SqlSessionManager(new SqlSessionFactoryBuilder().build(reader, null, null));
-  }
-
-  public static SqlSessionManager newInstance(Reader reader, String environment) {
-    return new SqlSessionManager(new SqlSessionFactoryBuilder().build(reader, environment, null));
-  }
-
-  public static SqlSessionManager newInstance(Reader reader, Properties properties) {
-    return new SqlSessionManager(new SqlSessionFactoryBuilder().build(reader, null, properties));
-  }
-
   public static SqlSessionManager newInstance(InputStream inputStream) {
     return new SqlSessionManager(new SqlSessionFactoryBuilder().build(inputStream, null, null));
   }

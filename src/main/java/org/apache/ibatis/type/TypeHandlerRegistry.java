@@ -49,6 +49,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.Configuration;
 
 /**
+ * 累转换器工具类 在将java累类型转换为SQL类型的时候需要 比如{@link ZonedDateTime}转换为<2021-03-23 10:00:35.000>
  * @author Clinton Begin
  * @author Kazuki Shimizu
  */

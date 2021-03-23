@@ -41,6 +41,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 /**
+ * 对XPath进行了一层封装 用来获取xml文件的值,可以替换入${url}的值 替换的核心逻辑在{@link PropertyParser#parse(String, Properties)} 方法
  * @author Clinton Begin
  * @author Kazuki Shimizu
  */

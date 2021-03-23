@@ -15,6 +15,9 @@
  */
 package org.apache.ibatis.scripting;
 
+import org.apache.ibatis.scripting.defaults.RawLanguageDriver;
+import org.apache.ibatis.scripting.xmltags.XMLLanguageDriver;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +30,11 @@ public class LanguageDriverRegistry {
 
   private Class<? extends LanguageDriver> defaultDriverClass;
 
+  public LanguageDriverRegistry(){
+
+    setDefaultDriverClass(XMLLanguageDriver.class);
+    register(RawLanguageDriver.class);
+  }
   public void register(Class<? extends LanguageDriver> cls) {
     if (cls == null) {
       throw new IllegalArgumentException("null is not a valid Language Driver");
