@@ -35,23 +35,48 @@ public final class MappedStatement {
 
   private String resource;
   private Configuration configuration;
+  /**
+   * 唯一标识 规则是 namespace+id
+   */
   private String id;
+  /**
+   * 抓取的大小
+   */
   private Integer fetchSize;
+  /**
+   * 超时时间
+   */
   private Integer timeout;
+  /**
+   * 使用那种statement
+   */
   private StatementType statementType;
+
   private ResultSetType resultSetType;
   private SqlSource sqlSource;
+  /**
+   * 缓存
+   */
   private Cache cache;
   private ParameterMap parameterMap;
   private List<ResultMap> resultMaps;
   private boolean flushCacheRequired;
+  /**
+   * 是否使用缓存
+   */
   private boolean useCache;
   private boolean resultOrdered;
+  /**
+   * 是什么类型的sql INSERT, UPDATE, DELETE, SELECT, FLUSH
+   */
   private SqlCommandType sqlCommandType;
   private KeyGenerator keyGenerator;
   private String[] keyProperties;
   private String[] keyColumns;
   private boolean hasNestedResultMaps;
+  /**
+   * 数据库id
+   */
   private String databaseId;
   private Log statementLog;
   private LanguageDriver lang;

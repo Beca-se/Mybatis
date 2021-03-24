@@ -112,6 +112,7 @@ public class XMLMapperBuilder extends BaseBuilder {
     }
 
     private void buildStatementFromContext(List<XNode> list) {
+        // 多看2次 就能理解官方文档说的优先使用带databaseId属性的sql
         if (configuration.getDatabaseId() != null) {
             buildStatementFromContext(list, configuration.getDatabaseId());
         }
@@ -243,10 +244,8 @@ public class XMLMapperBuilder extends BaseBuilder {
 
     private ResultMap resultMapElement(XNode resultMapNode, List<ResultMapping> additionalResultMappings, Class<?> enclosingType) {
         ErrorContext.instance().activity("processing " + resultMapNode.getValueBasedIdentifier());
-        String type = resultMapNode.getStringAttribute("type",
-                resultMapNode.getStringAttribute("ofType",
-                        resultMapNode.getStringAttribute("resultType",
-                                resultMapNode.getStringAttribute("javaType"))));
+        String type = resultMapNode.getStringAttribute("type", resultMapNode.getStringAttribute("ofType",
+                resultMapNode.getStringAttribute("resultType", resultMapNode.getStringAttribute("javaType"))));
         Class<?> typeClass = resolveClass(type);
         if (typeClass == null) {
             typeClass = inheritEnclosingType(resultMapNode, enclosingType);
@@ -323,12 +322,15 @@ public class XMLMapperBuilder extends BaseBuilder {
     }
 
     private void sqlElement(List<XNode> list) {
-        sqlElement(list, configuration.getDatabaseId());
+        if (configuration.getDatabaseId() != null) {
+            sqlElement(list, configuration.getDatabaseId());
+        }
+        sqlElement(list, null);
     }
 
     private void sqlElement(List<XNode> list, String requiredDatabaseId) {
         for (XNode context : list) {
-          // 表示这个sql是给那个dataBase使用的  需要和 mybatis-config.xml中的databaseIdProvider配合使用
+            // 表示这个sql是给那个dataBase使用的  需要和 mybatis-config.xml中的databaseIdProvider配合使用
             String databaseId = context.getStringAttribute("databaseId");
             String id = context.getStringAttribute("id");
             id = builderAssistant.applyCurrentNamespace(id, false);
@@ -350,6 +352,7 @@ public class XMLMapperBuilder extends BaseBuilder {
         }
         // skip this fragment if there is a previous one with a not null databaseId
         XNode context = this.sqlFragments.get(id);
+        // 相同id 优先使用带databaseId属性的sql
         return context.getStringAttribute("databaseId") == null;
     }
 

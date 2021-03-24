@@ -246,12 +246,12 @@
       <version>42.2.12</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
+<!--    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.20</version>
       <scope>test</scope>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
@@ -281,6 +281,14 @@
       <artifactId>mysql</artifactId>
       <version>1.14.2</version>
       <scope>test</scope>
+    </dependency>
+
+    <!--Demo 需要的依赖-->
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.19</version>
     </dependency>
   </dependencies>
 
