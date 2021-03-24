@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="./mybatis.properties">
+        <!-- 文件中的会覆盖这里配置的属性值,如果key相同的话-->
+        <property name="url" value="test"/>
+    </properties>
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <setting name="useColumnLabel" value="true"/>
+        <setting name="useGeneratedKeys" value="false"/>
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+        <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+        <setting name="defaultStatementTimeout" value="25"/>
+        <setting name="defaultFetchSize" value="100"/>
+        <setting name="safeRowBoundsEnabled" value="false"/>
+        <setting name="mapUnderscoreToCamelCase" value="false"/>
+        <setting name="localCacheScope" value="SESSION"/>
+        <setting name="jdbcTypeForNull" value="OTHER"/>
+        <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+    </settings>
+    <typeAliases>
+        <package name="com.zh.learn.domain"/>
+    </typeAliases>
+    <!--    <typeHandlers>
+            <package name="afa"/>
+        </typeHandlers>-->
+    <objectFactory type="org.apache.ibatis.reflection.factory.DefaultObjectFactory">
+        <property name="fadf" value="fadafsd"/>
+    </objectFactory>
+    <objectWrapperFactory type="org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory"/>
+    <reflectorFactory type="org.apache.ibatis.reflection.DefaultReflectorFactory"/>
+    <plugins>
+        <plugin interceptor="com.zh.learn.interceptor.MyInterceptor">
+            <property name="testParameter" value="This is interceptor."/>
+        </plugin>
+    </plugins>
+
+    <environments default="one">
+        <environment id="one">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="Two">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- <databaseIdProvider type="fsdaf">
+         <property name="fadf" value="fadfa"/>
+     </databaseIdProvider>-->
+    <mappers>
+        <mapper resource="./DemoMapper.xml"/>
+
+    </mappers>
+
+</configuration>
