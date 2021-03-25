@@ -27,7 +27,7 @@
 
     <insert id="insertTest" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="User">
         <include refid="sql001">
-            <property name="sdfa" value=""/>
+            <property name="sdfa" value="${url}:false"/>
         </include>
     </insert>
     <delete id="deleteTest" lang="XML" parameterMap="df" flushCache="true" timeout="1000" statementType="PREPARED">

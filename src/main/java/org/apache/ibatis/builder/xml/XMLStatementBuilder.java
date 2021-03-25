@@ -70,6 +70,7 @@ public class XMLStatementBuilder extends BaseBuilder {
         String parameterType = context.getStringAttribute("parameterType");
         Class<?> parameterTypeClass = resolveClass(parameterType);
 
+        // 使用哪种LanguageDriver来解析sql语句
         String lang = context.getStringAttribute("lang");
         LanguageDriver langDriver = getLanguageDriver(lang);
 
