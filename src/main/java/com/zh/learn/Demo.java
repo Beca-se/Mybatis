@@ -1,5 +1,6 @@
 package com.zh.learn;
 
+import com.zh.learn.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,7 +18,9 @@ public class Demo {
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession(false);
-        sqlSession.selectOne("");
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int delete = mapper.delete(1);
+        System.out.println(delete);
 
     }
 }

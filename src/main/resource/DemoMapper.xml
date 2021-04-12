@@ -2,37 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="UserMapper">
-    <sql id="sql001" lang="">
-        <where></where>
-        <if test="">
 
-
-        </if>
-
-        <trim prefix=" " prefixOverrides="" suffixOverrides="" suffix="">
-
-        </trim>
-        <foreach collection="a" separator="" close="" index="" item="" open="">
-
-        </foreach>
-        <choose>
-            <when test=""></when>
-
-            <otherwise></otherwise>
-        </choose>
-
-
-    </sql>
-
-    <insert id="insertTest" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="User">
-        <include refid="sql001">
-            <property name="sdfa" value="${url}:false"/>
-        </include>
-    </insert>
-    <delete id="deleteTest" lang="XML" parameterMap="df" flushCache="true" timeout="1000" statementType="PREPARED">
-
-        DELETE user
-        where id = #{1}
+<!--parameterMap已经被废弃-->
+<mapper namespace="com.zh.learn.mapper.UserMapper">
+    <delete id="delete" timeout="1000" flushCache="true" parameterType="long" statementType="PREPARED" lang="XML">
+        DELETE
+        FROM CLOUD_USER
+        WHERE USER_ID = #{1};
     </delete>
 </mapper>

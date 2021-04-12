@@ -35,11 +35,11 @@
     </objectFactory>
     <objectWrapperFactory type="org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory"/>
     <reflectorFactory type="org.apache.ibatis.reflection.DefaultReflectorFactory"/>
-    <plugins>
-        <plugin interceptor="com.zh.learn.interceptor.MyInterceptor">
-            <property name="testParameter" value="This is interceptor."/>
-        </plugin>
-    </plugins>
+<!--    <plugins>-->
+<!--        <plugin interceptor="com.zh.learn.interceptor.MyInterceptor">-->
+<!--            <property name="testParameter" value="This is interceptor."/>-->
+<!--        </plugin>-->
+<!--    </plugins>-->
 
     <environments default="one">
         <environment id="one">
