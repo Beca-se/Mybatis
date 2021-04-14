@@ -75,6 +75,7 @@ public class XMLStatementBuilder extends BaseBuilder {
         LanguageDriver langDriver = getLanguageDriver(lang);
 
         // Parse selectKey after includes and remove them.
+        // 一般不写 直接忽略
         processSelectKeyNodes(id, parameterTypeClass, langDriver);
 
         // Parse the SQL (pre: <selectKey> and <include> were parsed and removed)
@@ -88,7 +89,7 @@ public class XMLStatementBuilder extends BaseBuilder {
                     configuration.isUseGeneratedKeys() && SqlCommandType.INSERT.equals(sqlCommandType))
                     ? Jdbc3KeyGenerator.INSTANCE : NoKeyGenerator.INSTANCE;
         }
-
+        // 核心
         SqlSource sqlSource = langDriver.createSqlSource(configuration, context, parameterTypeClass);
         String resultType = context.getStringAttribute("resultType");
         Class<?> resultTypeClass = resolveClass(resultType);

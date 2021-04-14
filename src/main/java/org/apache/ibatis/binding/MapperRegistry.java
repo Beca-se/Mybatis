@@ -30,23 +30,39 @@ import org.apache.ibatis.session.SqlSession;
  * @author Clinton Begin
  * @author Eduardo Macarron
  * @author Lasse Voss
+ * 所有的mapper注册中心
  */
 public class MapperRegistry {
 
+  /**
+   * 全局唯一配置类
+   */
   private final Configuration config;
+  /**
+   * key 是interface. value是代理工厂可以产生 ,mapper接口的代理对象{@link MapperProxy}
+   */
   private final Map<Class<?>, MapperProxyFactory<?>> knownMappers = new HashMap<>();
 
   public MapperRegistry(Configuration config) {
     this.config = config;
   }
 
+  /**
+   * 核心方法 获取mapper接口的代理对象
+   * @param type
+   * @param sqlSession
+   * @param <T>
+   * @return
+   */
   @SuppressWarnings("unchecked")
   public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
+    // 先获取mapperProxyFactory对象
     final MapperProxyFactory<T> mapperProxyFactory = (MapperProxyFactory<T>) knownMappers.get(type);
     if (mapperProxyFactory == null) {
       throw new BindingException("Type " + type + " is not known to the MapperRegistry.");
     }
     try {
+      // 利用MapperProxyFactory对象构建代理对象
       return mapperProxyFactory.newInstance(sqlSession);
     } catch (Exception e) {
       throw new BindingException("Error getting mapper instance. Cause: " + e, e);
@@ -57,8 +73,15 @@ public class MapperRegistry {
     return knownMappers.containsKey(type);
   }
 
+  /**
+   * 真正添加mapper进入缓存map的方法
+   * @param type 要添加的class
+   * @param <T> 泛型
+   */
   public <T> void addMapper(Class<T> type) {
+    // 只添加interface进入
     if (type.isInterface()) {
+      // 如果已经有了
       if (hasMapper(type)) {
         throw new BindingException("Type " + type + " is already known to the MapperRegistry.");
       }
@@ -91,7 +114,7 @@ public class MapperRegistry {
 
   /**
    * Adds the mappers.
-   *
+   * 根据报名太添加mapper
    * @param packageName
    *          the package name
    * @param superType

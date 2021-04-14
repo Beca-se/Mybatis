@@ -25,10 +25,17 @@ import org.apache.ibatis.session.SqlSession;
 
 /**
  * @author Lasse Voss
+ * Mapper接口的代理工厂
  */
 public class MapperProxyFactory<T> {
 
+  /**
+   * 要为那个接口创建代理对象
+   */
   private final Class<T> mapperInterface;
+  /**
+   *
+   */
   private final Map<Method, MapperMethodInvoker> methodCache = new ConcurrentHashMap<>();
 
   public MapperProxyFactory(Class<T> mapperInterface) {

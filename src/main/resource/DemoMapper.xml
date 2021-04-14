@@ -5,7 +5,18 @@
 
 <!--parameterMap已经被废弃-->
 <mapper namespace="com.zh.learn.mapper.UserMapper">
+    <update id="save" timeout="1000" flushCache="true" statementType="PREPARED" keyColumn="USER_ID" keyProperty="userId"
+            useGeneratedKeys="true">
+
+        INSERT INTO CLOUD_USER (user_name, user_nick_name, password, last_login_time)
+        values (#{userName}, #{userNickName}, #{password}, #{lastLoginTime})
+    </update>
     <delete id="delete" timeout="1000" flushCache="true" parameterType="long" statementType="PREPARED" lang="XML">
+        DELETE
+        FROM CLOUD_USER
+        WHERE USER_ID = #{1};
+    </delete>
+    <delete id="test" timeout="1000" flushCache="true" parameterType="long" statementType="PREPARED" lang="XML">
         DELETE
         FROM CLOUD_USER
         WHERE USER_ID = #{1};

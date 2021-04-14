@@ -130,7 +130,7 @@ public class Configuration {
     protected final LanguageDriverRegistry languageRegistry = new LanguageDriverRegistry();
 
     /**
-     * Sql对应的mapperStatement
+     * Sql对应的mapperStatement  key is interface+sqlId
      */
     protected final Map<String, MappedStatement> mappedStatements = new StrictMap<MappedStatement>("Mapped Statements collection")
             .conflictMessageProducer((savedValue, targetValue) ->

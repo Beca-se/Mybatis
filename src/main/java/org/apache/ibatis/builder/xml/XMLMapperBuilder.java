@@ -103,7 +103,9 @@ public class XMLMapperBuilder extends BaseBuilder {
             cacheElement(context.evalNode("cache"));
             // parameterMap 已经废弃
             parameterMapElement(context.evalNodes("/mapper/parameterMap"));
+            // TODO 先不管resultMap 这个很复杂
             resultMapElements(context.evalNodes("/mapper/resultMap"));
+            // 将 sql片段加入configuration.getSqlFragments()不做任何处理
             sqlElement(context.evalNodes("/mapper/sql"));
             buildStatementFromContext(context.evalNodes("select|insert|update|delete"));
         } catch (Exception e) {

@@ -1,5 +1,8 @@
 package com.zh.learn.mapper;
 
+import com.zh.learn.domain.User;
+import org.apache.ibatis.session.ResultHandler;
+
 /**
  * @author Administrator
  * @Class Name UserMapper
@@ -8,6 +11,8 @@ package com.zh.learn.mapper;
  **/
 public interface UserMapper {
 
+    int save(User user);
+
     /**
      * 通过id删除数据
      *
@@ -15,4 +20,6 @@ public interface UserMapper {
      * @return 删除到条数
      */
     int delete(long id);
+
+    int test(ResultHandler resultHandler, long id);
 }
